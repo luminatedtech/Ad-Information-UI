@@ -7,19 +7,24 @@ function handleCategoryChange(category) {
     setSelectedCategory(category)
 }
 console.log(adData)
+const sortedData = [...adData].sort((a,b)=> 
+    selectedCategory === "Ascending" ? a.cost - b.cost : b.cost - a.cost
+    )
+console.log(selectedCategory)
+console.log(sortedData)
 
     return (
         
         <div className="flex flex-wrap gap-4 mt-10">
             <Filter category={selectedCategory} onCategoryChange={handleCategoryChange}/>
-            {adData.map((ad,index)=> (
+            {sortedData.map((ad,index)=> (
                 <AdCard 
                 key={index}
-                campaignName={ad.campaign_name || ad.campaign|| ad.utm_campaign}
-                mediaBuyName={ad.media_buy_name || ad.ad_group || ad.ad_squad_name || ad.utm_medium}
-                adName={ad.ad_name || ad.image_name || ad.creative_name || ad.utm_content}
-                cost={ad.cost || ad.spend}
-                clicks={ad.clicks || ad.post_clicks}
+                campaignName={ad.campaign}
+                mediaBuyName={ad.ad_group}
+                adName={ad.creative_name}
+                cost={ad.cost}
+                clicks={ad.clicks}
                 />
             ))}
         </div>
