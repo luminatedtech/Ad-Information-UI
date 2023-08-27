@@ -6,7 +6,7 @@ const [selectedCategory, setSelectedCategory] = useState("All")
 function handleCategoryChange(category) {
     setSelectedCategory(category)
 }
-console.log(adData)
+
 const sortedData = [...adData].sort((a,b)=> 
     selectedCategory === "Ascending" ? a.cost - b.cost : b.cost - a.cost
     )
@@ -25,6 +25,7 @@ console.log(sortedData)
                 adName={ad.creative_name}
                 cost={ad.cost}
                 clicks={ad.clicks}
+                results={ad.results}
                 />
             ))}
         </div>

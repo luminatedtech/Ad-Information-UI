@@ -26,6 +26,7 @@ function App() {
       ...data.twitter_ads,
       ...data.snapchat_ads,
     ];
+    const googleAnalyticsArray = [...data.google_analytics]
     const modifiedData = combinedArray.map((ad)=> {
       const modifiedAd = {}
       for (const key in ad) {
@@ -38,11 +39,28 @@ function App() {
       }
       return modifiedAd
      })
-    setAdvertisementData(modifiedData)})
+  
+     const mergedArray = modifiedData.map(ad1 => {
+      const matchingAd = googleAnalyticsArray.find(ad2 => 
+        ad2.utm_campaign === ad1.campaign &&
+        ad2.utm_medium === ad1.ad_group &&
+        ad2.utm_content === ad1.creative_name
+        
+     )
+ 
+     if (matchingAd) {
+      return ({...ad1, results: matchingAd.results})
+     }
+     else {
+      return ad1
+     }
+    })
+     console.log(mergedArray)
+    setAdvertisementData(mergedArray)})
   },[])
   const [advertisementData, setAdvertisementData] = useState([])
 
- 
+
 console.log(advertisementData)
   return (
     <div className="bg-primary w-full h-full">
