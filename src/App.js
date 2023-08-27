@@ -1,25 +1,26 @@
-import logo from './logo.svg';
+import React, {useEffect, useState} from 'react';
+import CardContainer from './CardContainer';
 import './App.css';
 
 function App() {
+  useEffect(()=> {
+    fetch("http://localhost:3000/fakeDataSet")
+    .then((r)=>r.json())
+    .then((data)=>  {
+    const combinedArray = [
+      ...data.facebook_ads,
+      ...data.twitter_ads,
+      ...data.snapchat_ads,
+    ];
+    setAdvertisementData(combinedArray)})
+  },[])
+  const [advertisementData, setAdvertisementData] = useState([])
+  console.log(advertisementData)
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="bg-primary w-full h-full">
+        <CardContainer adData={advertisementData}/>
     </div>
   );
-}
+} 
 
 export default App;
