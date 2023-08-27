@@ -6,6 +6,8 @@ const [selectedCategory, setSelectedCategory] = useState("All")
 function handleCategoryChange(category) {
     setSelectedCategory(category)
 }
+console.log(adData)
+
     return (
         
         <div className="flex flex-wrap gap-4 mt-10">
