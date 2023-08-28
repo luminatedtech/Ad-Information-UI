@@ -76,7 +76,7 @@ const filteredAds = advertisementData.filter(ad=>
           id="outlined-basic"
           variant='outlined'
           fullWidth
-          label="search"
+          label="search by campaign name"
         />
       </div>
     
