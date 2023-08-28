@@ -6,7 +6,7 @@ function Filter ({category,onCategoryChange}) {
                 value={category}
                 onChange={(e)=> onCategoryChange(e.target.value)}
             >
-                <option value="All"> Filter by Cost</option>
+                <option value="All"> Filter by Spend</option>
                 <option value="Ascending"> Low-High</option>
                 <option value="Descending"> High-Low</option>
             </select>
