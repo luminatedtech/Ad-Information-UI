@@ -18,7 +18,7 @@ console.log(sortedData)
             <div className="h-[4rem] flex justify-end align-center border-t border-b border-lightgray mt-1">
                 <Filter category={selectedCategory} onCategoryChange={handleCategoryChange}/>
             </div>
-            <div className="flex flex-wrap gap-4 mt-10">
+            <div className="flex flex-wrap gap-4 bg-white justify-center pt-10">
                 {sortedData.map((ad,index)=> (
                     <AdCard 
                     key={index}

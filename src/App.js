@@ -8,6 +8,13 @@ function App() {
     fetch("http://localhost:3000/fakeDataSet")
     .then((r)=>r.json())
     .then((data)=>  {
+      //Combining all the ads together into one array excpet google analytics
+      const combinedArray = [
+        ...data.facebook_ads,
+        ...data.twitter_ads,
+        ...data.snapchat_ads,
+      ];
+      //A map so that I can standarize all keys
       const keyMapping = {
         "campaign_name" : "campaign",
         "utm_campaign" : "campaign"
@@ -20,12 +27,8 @@ function App() {
         "ad_name" : "creative_name",
         "utm_content" : "creative_name",
        }
-    const combinedArray = [
-      ...data.facebook_ads,
-      ...data.twitter_ads,
-      ...data.snapchat_ads,
-    ];
     const googleAnalyticsArray = [...data.google_analytics]
+    //looping through each key of each ad and swapping them using the keymapping obj
     const modifiedData = combinedArray.map((ad)=> {
       const modifiedAd = {}
       for (const key in ad) {
@@ -38,20 +41,19 @@ function App() {
       }
       return modifiedAd
      })
-  
+     //Mapping through the data to find ads that match and then adding results 
      const mergedArray = modifiedData.map(ad1 => {
       const matchingAd = googleAnalyticsArray.find(ad2 => 
         ad2.utm_campaign === ad1.campaign &&
         ad2.utm_medium === ad1.ad_group &&
         ad2.utm_content === ad1.creative_name
-        
      )
  
      if (matchingAd) {
       return ({...ad1, results: matchingAd.results})
      }
      else {
-      return ad1
+      return ({...ad1, results: 0})
      }
     })
   
@@ -60,6 +62,8 @@ function App() {
 
   const [advertisementData, setAdvertisementData] = useState([])
   const [inputText, setInputText] = useState("")
+
+  //general search filter
   let inputHandler = (e) => {
     let searchTerm = e.target.value
     setInputText(searchTerm)
