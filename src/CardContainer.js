@@ -20,6 +20,7 @@ console.log(sortedData)
             {sortedData.map((ad,index)=> (
                 <AdCard 
                 key={index}
+                impressions={ad.impressions}
                 campaignName={ad.campaign}
                 mediaBuyName={ad.ad_group}
                 adName={ad.creative_name}

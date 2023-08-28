@@ -70,6 +70,7 @@ const filteredAds = advertisementData.filter(ad=>
     <div>
       <div>
         <TextField
+          className='mb-10'
           onChange={inputHandler}
           value={inputText}
           id="outlined-basic"
