@@ -1,6 +1,6 @@
 function Filter ({category,onCategoryChange}) {
     return (
-        <div>
+        <>
             <select
                 name="filter"
                 value={category}
@@ -10,7 +10,7 @@ function Filter ({category,onCategoryChange}) {
                 <option value="Ascending"> Low-High</option>
                 <option value="Descending"> High-Low</option>
             </select>
-        </div>
+        </>
     )
 }
 export default Filter

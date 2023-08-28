@@ -67,7 +67,7 @@ function App() {
 const filteredAds = advertisementData.filter(ad=>
   ad.campaign.toLowerCase().includes(inputText.toLowerCase()))
   return (
-    <div>
+    <div className="mt-1 px-2">
       <div>
         <TextField
           className='mb-10'
@@ -76,7 +76,7 @@ const filteredAds = advertisementData.filter(ad=>
           id="outlined-basic"
           variant='outlined'
           fullWidth
-          label="search by campaign name"
+          label="Search by Campaign Name"
         />
       </div>
     
