@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import CardContainer from './CardContainer';
+import { TextField } from '@mui/material';
 import './App.css';
 
 function App() {
@@ -18,8 +19,6 @@ function App() {
         "image_name" : "creative_name",
         "ad_name" : "creative_name",
         "utm_content" : "creative_name",
-      
-      
        }
     const combinedArray = [
       ...data.facebook_ads,
@@ -55,16 +54,34 @@ function App() {
       return ad1
      }
     })
-     console.log(mergedArray)
+  
     setAdvertisementData(mergedArray)})
   },[])
+
   const [advertisementData, setAdvertisementData] = useState([])
-
-
-console.log(advertisementData)
+  const [inputText, setInputText] = useState("")
+  let inputHandler = (e) => {
+    let searchTerm = e.target.value
+    setInputText(searchTerm)
+  }
+const filteredAds = advertisementData.filter(ad=>
+  ad.campaign.toLowerCase().includes(inputText.toLowerCase()))
   return (
-    <div className="bg-primary w-full h-full">
-        <CardContainer adData={advertisementData}/>
+    <div>
+      <div>
+        <TextField
+          onChange={inputHandler}
+          value={inputText}
+          id="outlined-basic"
+          variant='outlined'
+          fullWidth
+          label="search"
+        />
+      </div>
+    
+      <div className="bg-primary w-full h-full">
+          <CardContainer adData={filteredAds}/>
+      </div>
     </div>
   );
 } 
